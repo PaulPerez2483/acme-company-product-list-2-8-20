@@ -1,0 +1,17 @@
+nav {
+    display: flex;
+    justify-content:space-around;
+
+}
+
+nav > a {
+    text-align: center;
+    width: 150px;
+    background-color: orange;
+    padding: 15px;
+    border-radius: 10px;
+}
+
+.active {
+    color: white;
+}
