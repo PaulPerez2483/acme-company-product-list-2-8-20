@@ -54,7 +54,26 @@ class App extends Component {
             })
           })).catch(errors => {
             console.log(errors) // if any errors
-          })
+          });
+
+          window.addEventListener('hashchange', (e)=> {
+            let currentLocation = window.location.hash.slice(1);
+             console.log(currentLocation)
+            if(currentLocation === 'products') {
+                this.setState({
+                    view: 'products'
+                })
+            }
+            if(currentLocation === 'companies') {
+                this.setState({
+                    view: 'companies'
+                })
+            }
+        })
+
+        let currentLocation = window.location.hash.slice(1);
+        this.setState({view:currentLocation})
+
          
     }
 
@@ -63,19 +82,7 @@ class App extends Component {
 
         const {products, companies, view, loading} = this.state;
 
-        window.addEventListener('hashchange', (e)=> {
-            let currentLocation = location.hash.slice(1);
-            if(currentLocation === 'products') {
-                this.setState({
-                    view: 'products'
-                })
-            }
-            else if(currentLocation === 'companies') {
-                this.setState({
-                    view: 'companies'
-                })
-            }
-        })
+        console.log(view)
     
         if(loading) return createElement('div', {className: "loading"}, 'fetching Data');
 
@@ -86,7 +93,7 @@ class App extends Component {
         if (view === 'products') {
             chosenView = createElement( ProductsList, { products });
         }
-        if (view === 'companies') {
+        else if (view === 'companies') {
             chosenView = createElement( CompaniesList, { companies });
         }
 
